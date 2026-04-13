@@ -168,3 +168,5 @@ Account{name=New folder (2), path=D:/New folder (2), type=PREDICT}
 2026-04-13 23:18:48.370 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(D:/New folder (2)/client-work-backend)
 2026-04-13 23:18:58.220 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(D:/New folder (2)/client-work-backend)
 2026-04-13 23:19:02.281 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(D:/New folder (2))
+2026-04-13 23:30:52.204 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(D:/New folder (2))
+2026-04-13 23:31:31.066 [pool-3-thread-1] INFO  com.rs.mv.mvvs.client.catalog.from.scan.CurrentPathScanner - [client:400205]scan file in current open file directory(D:/New folder (2)/client-work-backend)
