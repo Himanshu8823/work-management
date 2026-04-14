@@ -17,14 +17,6 @@ const { generalLimiter } = require("./middleware/rateLimiter");
 /** @type {import("express").Express} */
 const app = express();
 
-const trustProxy = process.env.TRUST_PROXY
-  ? parseInt(process.env.TRUST_PROXY, 10)
-  : process.env.NODE_ENV === "production"
-    ? 1
-    : 0;
-
-app.set("trust proxy", trustProxy);
-
 const parseAllowedOrigins = () => {
   const envOrigins = [
     process.env.CLIENT_URL,
@@ -42,11 +34,16 @@ const parseAllowedOrigins = () => {
 };
 
 const allowedOrigins = parseAllowedOrigins();
+const allowedOriginPatterns = [/^https:\/\/work-management(?:-[a-z0-9-]+)?\.vercel\.app$/i];
 
 const corsOptions = {
   origin(origin, callback) {
     // Allow non-browser clients (no Origin header) and allowlisted browser origins.
-    if (!origin || allowedOrigins.has(origin)) {
+    const isPatternMatch = origin
+      ? allowedOriginPatterns.some((pattern) => pattern.test(origin))
+      : false;
+
+    if (!origin || allowedOrigins.has(origin) || isPatternMatch) {
       return callback(null, true);
     }
 
