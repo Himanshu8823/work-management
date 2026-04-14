@@ -10,7 +10,7 @@ const { protect } = require("../middleware/auth");
 const { authLimiter } = require("../middleware/rateLimiter");
 
 // POST /api/auth/login
-router.post("/login", authLimiter, login);
+router.post("/login", login);
 
 // POST /api/auth/refresh
 router.post("/refresh", refreshToken);
