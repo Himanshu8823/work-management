@@ -12,7 +12,6 @@ const mongoSanitize = require("express-mongo-sanitize");
 
 const routes = require("./routes");
 const { errorHandler } = require("./middleware/errorHandler");
-const { generalLimiter } = require("./middleware/rateLimiter");
 
 /** @type {import("express").Express} */
 const app = express();
@@ -76,9 +75,6 @@ app.use(mongoSanitize());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-
-// ─── Rate Limiting ───────────────────────────────────────────────────────────
-app.use("/api", generalLimiter);
 
 // ─── Routes ──────────────────────────────────────────────────────────────────
 app.use("/api", routes);
