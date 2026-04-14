@@ -33,8 +33,8 @@ class ApiService {
       async (error) => {
         const originalRequest = error.config;
 
-        // Handle 401 - try to refresh token
-        if (error.response?.status === 401 && !originalRequest._retry) {
+        // Handle 401 - try to refresh token (but not for auth endpoints)
+        if (error.response?.status === 401 && !originalRequest._retry && !originalRequest.url?.includes('/auth')) {
           originalRequest._retry = true;
           try {
             await this.refreshToken();

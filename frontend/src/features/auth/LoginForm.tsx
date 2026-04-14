@@ -15,6 +15,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -40,10 +41,13 @@ export function LoginForm() {
     setError(null);
     loginMutation.mutate(data, {
       onSuccess: () => {
+        toast.success('Login successful!');
         navigate('/');
       },
       onError: (err: any) => {
-        setError(err.response?.data?.message || 'Login failed. Please try again.');
+        const message = err.response?.data?.message || 'Login failed. Please try again.';
+        setError(message);
+        toast.error(message);
       },
     });
   };
